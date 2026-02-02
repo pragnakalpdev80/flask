@@ -69,7 +69,7 @@ def get_all_users():
 def get_user(user_id):
 
     if not check_uuid(user_id):
-        return jsonify({"error": "Invalid UUID format"}), 500
+        return jsonify({"error": "Invalid UUID format"}), 400
     
     users=load_users()
     if not users:
