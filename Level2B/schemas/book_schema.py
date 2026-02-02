@@ -1,6 +1,6 @@
 from flask_marshmallow import Marshmallow
 from marshmallow import ValidationError
-from models import Book
+from models.book import Book
 
 ma = Marshmallow()
 
@@ -9,5 +9,3 @@ class BookSchema(ma.SQLAlchemyAutoSchema):
         model = Book
         load_instance = True  
 
-book_schema = BookSchema()
-books_schema = BookSchema(many=True)
