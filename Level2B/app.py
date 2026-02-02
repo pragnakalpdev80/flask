@@ -31,6 +31,14 @@ users_schema = UserSchema(many=True)
 book_schema = BookSchema()
 books_schema = BookSchema(many=True)
 
+
+@app.errorhandler(404)
+def not_found(error):
+    # print(error)
+    return jsonify({
+        "error": "This endpoint does not exist"
+    }), 404
+
 @app.route('/api/users', methods=['GET'])
 def get_users():
     try:
