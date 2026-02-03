@@ -1,10 +1,9 @@
 from flask import Flask
-from extensions import db, migrate, jwt, ma
-from routes.user_routes import user_bp
-from routes.auth_routes import auth_bp
-from app_config import Config
+from app.extensions import db, migrate, jwt, ma
+from app.routes.user_routes import user_bp
+from config import TestConfig
 
-def create_app(config_class=Config):
+def create_app(config_class=TestConfig):
     app = Flask(__name__)
 
     # 1. Load Configuration
@@ -18,6 +17,13 @@ def create_app(config_class=Config):
 
     # 3. Register Blueprints
     app.register_blueprint(user_bp)
-    app.register_blueprint(auth_bp)
 
+    with app.app_context():
+        try:
+            db.engine.connect()
+            print("="*28+"\n [Connected with Database]\n"+"="*28)
+        except Exception as e:
+            print(e)
+
+    
     return app
