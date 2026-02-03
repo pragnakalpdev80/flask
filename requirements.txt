@@ -4,3 +4,5 @@ flask-migrate
 psycopg2-binary
 flask-marshmallow 
 marshmallow-sqlalchemy
+flask-bcrypt
+flask-jwt-extended
