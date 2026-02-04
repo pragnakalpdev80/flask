@@ -16,7 +16,7 @@ def create_book():
         "price": book.price,
         "author_id": book.author_id
     }), status
-@book_bp.route("/api/v1/books/<int:id>", methods=["PATCH"])
+@book_bp.route("/api/v1/books/<int:id>", methods=["PUT"])
 def update_book_price(id):
     book, error, status = BookService.update_book_price(id, request.get_json())
     if error:
