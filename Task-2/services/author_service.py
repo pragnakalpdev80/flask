@@ -36,10 +36,4 @@ class AuthorService:
         db.session.delete(author)
         db.session.commit()
         return True, None, 200
-    @staticmethod
-    def get_all():
-        books=Book.query.all()
-        all_books=[]
-        for book in books:
-            all_books.append({"id":book.id,"title":book.title,"price":book.price,"author_id":book.author_id})
-        return all_books,None,200
+   

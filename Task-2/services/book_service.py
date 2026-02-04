@@ -35,6 +35,15 @@ class BookService:
         db.session.commit()        
         
         return updated_book, None, 200
+    
+    @staticmethod
+    def get_all():
+        books=Book.query.filter_by(is_deleted=False).all()
+        print(books)
+        all_books=[]
+        for book in books:
+            all_books.append({"id":book.id,"title":book.title,"price":book.price,"author_id":book.author_id})
+        return all_books,None,200
 
 
 
