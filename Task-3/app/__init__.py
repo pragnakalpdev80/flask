@@ -3,6 +3,7 @@ from app.extensions import db, migrate
 from config import TestConfig, DevConfig
 from app.routes.author_routes import author_bp
 from app.routes.book_routes import book_bp
+from app.cli.seed import register_commands
 
 def create_app(config_class=DevConfig):
     app = Flask(__name__)
@@ -28,10 +29,10 @@ def create_app(config_class=DevConfig):
     
     with app.app_context():
         try:
-            db.engine.connect()
-            print("="*28+"\n [Connected with Database]\n"+"="*28)
+            register_commands(app)
+            if not register_commands(app):
+                print("\nERROR: Data already exists.\n")
         except Exception as e:
             print(e)
 
-    
     return app

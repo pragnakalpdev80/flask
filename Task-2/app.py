@@ -64,7 +64,7 @@ def get_author(id):
         "books": all_books
     }), status
 
-@app.route("/books/<int:id>", methods=["PATCH"])
+@app.route("/books/<int:id>", methods=["PUT"])
 def update_book_price(id):
     book, error, status = BookService.update_book_price(id, request.get_json())
     if error:
