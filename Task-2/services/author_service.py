@@ -7,7 +7,7 @@ class AuthorService:
             return None, "Name is required", 400
 
         if Author.query.filter_by(name=data["name"]).first():
-            return None, "Author already exists", 400
+            return None, "Author already exists", 404
 
         author = Author(
             name=data["name"],
