@@ -29,7 +29,7 @@ def update_book_price(id):
 
 @book_bp.route('/api/v1/books', methods=['GET'])
 def get_all_books():
-    books,error,status=AuthorService.get_all()
+    books,error,status=BookService.get_all()
     if error:
         return jsonify({"error": error}), status
     return jsonify(books),status

@@ -84,7 +84,7 @@ def delete_author(id):
 
 @app.route('/books', methods=['GET'])
 def get_all_books():
-    books,error,status=AuthorService.get_all()
+    books,error,status=BookService.get_all()
     return jsonify(books),status
 
 if __name__ == "__main__":
