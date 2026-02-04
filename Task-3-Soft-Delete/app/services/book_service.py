@@ -26,7 +26,8 @@ class BookService:
         book = Book.query.get(book_id)
         if not book:
             return None, "Book not found",404
-        
+        if Book.query.filter_by(id=book_id,is_deleted=True).first():
+            return None, "Book not found",404
         if not data or "price" not in data:
             return None, "Price is missing", 400
         
@@ -40,7 +41,7 @@ class BookService:
     
     @staticmethod
     def get_all():
-        books=Book.query.all()
+        books=Book.query.filter_by(is_deleted=False).first()
         all_books=[]
         for book in books:
             all_books.append({"id":book.id,"title":book.title,"price":book.price,"author_id":book.author_id})
